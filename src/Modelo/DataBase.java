@@ -1,21 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
-
-//import java.sql.CallableStatement;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//
-//import java.sql.Statement;
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
 
 import java.sql.*;
 import java.util.*;
@@ -23,16 +6,17 @@ import java.util.*;
 /*** @author Saira Urbina Cienfuegos*/
 
 public class DataBase {
-    //Cadena de conexión de la BD
-    private final String URL="jdbc:sqlserver://localhost:1433;databaseName=PRESTAMOS;"+
-            "integratedSecurity=true;"+"encrypt=true;trustServerCertificate=true;";
+    //Cadena de conexión de la BD publicacion en MYSQL
+    private final String URL="jdbc:mysql://localhost:3306/publicacion";
+    private final String user="Sai";
+    private final String password="M2023***";        
      
     private Connection conexion; //Para conexión con la BD
     
     public DataBase(){ //Constructor de la clase
         try{
           //Usando Driver conector y cadena de conexión para conectar BD  
-          conexion=DriverManager.getConnection(URL);
+          conexion=DriverManager.getConnection(URL, user, password);
           System.out.println("Conexiòn Establecida");
           
         }catch(SQLException e){

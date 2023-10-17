@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
-import java.sql.Date;
+import java.sql.*;
 
-
-/**
- *
- * @author Saira
- */
+/** @author Saira Urbina*/
 public class Revista {
     int numero;
     String titulo;
@@ -19,8 +10,14 @@ public class Revista {
     String issn;
     float precio;
     java.sql.Time Horaventa;
+
+    public Revista(int numero, String titulo) {
+        this.numero = numero;
+        this.titulo = titulo;
+    }
     
-    public Revista(int numero, String titulo, int ayo, String issn, float precio, java.sql.Time Horaventa) {
+    public Revista(int numero, String titulo, int ayo, String issn, 
+            float precio, java.sql.Time Horaventa) {
         this.numero = numero;
         this.titulo = titulo;
         this.ayo = ayo;
@@ -29,7 +26,8 @@ public class Revista {
         this.Horaventa = Horaventa;
     }
 
-    public Revista(String titulo, int ayo, String issn, float precio, java.sql.Time Horaventa) {
+    public Revista(String titulo, int ayo, String issn, float precio,
+            java.sql.Time Horaventa) {
         this.titulo = titulo;
         this.ayo = ayo;
         this.issn = issn;
@@ -84,5 +82,8 @@ public class Revista {
     public void setHoraventa(java.sql.Time Horaventa) {
         this.Horaventa = Horaventa;
     }
+    public String toString() {
+    return numero + " - " + titulo;
+ }
    
 }

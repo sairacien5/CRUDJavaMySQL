@@ -4,11 +4,12 @@ import Vista.*;
 /*** @author Saira Urbina Cienfuegos*/
 public class SistemaPublicacionesMDI extends javax.swing.JFrame {
 
-        private JInternalFrameAutores Autores; //Objeto Formulario Autores
+       private JInternalFrameAutores Autores; //Objeto Formulario Autores
        private JInternalFrameRevistas Revistas;
         
     public SistemaPublicacionesMDI() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         setTitle("Publicaciones"); //Agrega titulo al MDI
         Autores= new JInternalFrameAutores();//
         Revistas=new JInternalFrameRevistas();
@@ -37,11 +38,11 @@ public class SistemaPublicacionesMDI extends javax.swing.JFrame {
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         verAutorMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemRevistas = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItemRevistas = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -52,7 +53,7 @@ public class SistemaPublicacionesMDI extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,6 +108,18 @@ public class SistemaPublicacionesMDI extends javax.swing.JFrame {
 
         menuBar.add(editMenu);
 
+        jMenu1.setText("Revista");
+
+        jMenuItemRevistas.setText("Ver Revistas");
+        jMenuItemRevistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRevistasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemRevistas);
+
+        menuBar.add(jMenu1);
+
         helpMenu.setMnemonic('h');
         helpMenu.setText("Help");
 
@@ -119,18 +132,6 @@ public class SistemaPublicacionesMDI extends javax.swing.JFrame {
         helpMenu.add(aboutMenuItem);
 
         menuBar.add(helpMenu);
-
-        jMenu1.setText("Revista");
-
-        jMenuItemRevistas.setText("Ver Revistas");
-        jMenuItemRevistas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRevistasActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItemRevistas);
-
-        menuBar.add(jMenu1);
 
         setJMenuBar(menuBar);
 
@@ -151,13 +152,20 @@ public class SistemaPublicacionesMDI extends javax.swing.JFrame {
     private void verAutorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verAutorMenuItemActionPerformed
         //Llama al método obtenerDatos para mostrarlos en la tabla del formulario
         Autores.obtenerDatos(); 
+        int x=(desktopPane.getWidth()/2)- Autores.getWidth()/2;
+        int y=(desktopPane.getHeight()/2)- Autores.getHeight()/2;
+        Autores.setLocation(x, y);
         Autores.setVisible(true);//Muestra el formulario JInternalFrameAutores
     }//GEN-LAST:event_verAutorMenuItemActionPerformed
 
     private void jMenuItemRevistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRevistasActionPerformed
-        // TODO add your handling code here:
+        int x=(desktopPane.getWidth()/2)- Revistas.getWidth()/2;
+        int y=(desktopPane.getHeight()/2)- Revistas.getHeight()/2;
         Revistas.obtenerDatos();
+        Revistas.setLocation(x, y);
         Revistas.setVisible(true);
+        
+        
     }//GEN-LAST:event_jMenuItemRevistasActionPerformed
 
     /**

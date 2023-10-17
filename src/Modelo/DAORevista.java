@@ -5,19 +5,16 @@
  */
 package Modelo;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author Saira
- */
+/*** @author Saira Urbina Cienfuegos*/
+
 public class DAORevista {
      //Método para insertar datos en la BD
     public Revista Insertar(String titulo, int ayo, String issn, float precio, java.sql.Time Horaventa) {
-        String transaccion = "INSERT INTO Revista VALUES('"
+        String transaccion = "INSERT INTO Revista (titulo,ayo,issn,precio,Horaventa ) VALUES('"
                 + titulo + "', '"
                 + ayo + "', '"
                 + issn + "', '"
@@ -44,21 +41,41 @@ public class DAORevista {
         return new DataBase().Actualizar(transaccion);
     }
 
-    public Revista ObtenerDatos(int numero) {
+//    public Revista ObtenerDatos(int numero) {
+//        String transaccion = "SELECT * FROM Revista WHERE numero='"
+//                + numero + "'";
+//        List<Map> registros = new DataBase().Listar(transaccion);
+//        Revista re = null;
+//        for (Map registro : registros) {
+//            re = new Revista((int) registro.get("numero"),
+//                    (String) registro.get("titulo"),
+//                    (int) registro.get("ayo"),
+//                    (String) registro.get("issn"),
+//                    (float) registro.get("precio"),
+//                    (java.sql.Time) registro.get("Horaventa"));
+//        }
+//
+//        return re;
+//    }
+    
+      //Método para seleccionar todos los registros de la tabla
+    public List ObtenerDatos(int num) {
         String transaccion = "SELECT * FROM Revista WHERE numero='"
-                + numero + "'";
+                + num + "'";
+        //Llama a método Listar de DataBase.java  
         List<Map> registros = new DataBase().Listar(transaccion);
-        Revista re = null;
-        for (Map registro : registros) {
-            re = new Revista((int) registro.get("numero"),
+        List<Revista> revistas = new ArrayList(); //Arreglo de Revistas
+        //Ciclo que recorre cada registro y los agrega al arreglo Revista
+        for (Map registro : registros) { 
+           Revista re = new Revista((int) registro.get("numero"),
                     (String) registro.get("titulo"),
                     (int) registro.get("ayo"),
                     (String) registro.get("issn"),
-                    (float) registro.get("precio"),
-                    (java.sql.Time) registro.get("Horaventa"));
+                    (Float.parseFloat(registro.get("precio").toString())),
+                    (java.sql.Time.valueOf( registro.get("Horaventa").toString())));
+            revistas.add(re);
         }
-
-        return re;
+        return revistas; //Retorna todos los registros ubicados en la tabla de BD     
     }
     
     //Método para seleccionar todos los registros de la tabla

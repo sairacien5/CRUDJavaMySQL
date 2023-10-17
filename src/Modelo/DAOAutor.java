@@ -1,14 +1,14 @@
 package Modelo;
-import java.sql.Date;
-//import java.util.List;
+
 import java.util.*;
 
 /**@author Saira Urbina Cienfuegos***/
+
 public class DAOAutor {
     //Método para insertar datos en la BD
     public Autor Insertar(String cedula, String nombres, String apellidos,
             String email, java.sql.Date fechaNac) {
-        String transaccion = "INSERT INTO Autor VALUES('"
+        String transaccion = "INSERT INTO Autor (cedula,nombres,apellidos,email,fechaNac) VALUES('"
                 + nombres + "', '"
                 + apellidos + "', '"
                 + email + "', '"
